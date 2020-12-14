@@ -3,10 +3,14 @@ version: '3'
 services:
   db:
     image: postgres:12
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     environment:
       POSTGRES_DB: northwind
-      POSTGRES_USER: northwind_user
-      POSTGRES_PASSWORD: thewindisblowing
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - ./dbdata:/var/lib/postgresql/data
       - ./northwind.sql:/docker-entrypoint-initdb.d/northwind.sql
+    ports: 
+    - "127.0.0.1:5432:5432"
