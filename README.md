@@ -41,7 +41,7 @@ db_1  | 2019-11-28 21:07:14.474 UTC [1] LOG:  database system is ready to accept
 Open another terminal window, and type:
 
 ````bash
-> docker-compose exec db psql -U northwind_user -d northwind
+> docker-compose exec db psql -U postgres -d postgres
 
 psql (10.5 (Debian 10.5-1.pgdg90+1))
 Type "help" for help.
@@ -53,6 +53,22 @@ postgres=# select * from us_states;
         2 | Alaska               | AK         | north
         ...
 ````
+
+#### 2.1 OR run psql from your host
+```bash
+$ psql -h localhost -p 5432 -d northwind -U postgres 
+
+Password for user postgres: 
+psql (13.1 (Ubuntu 13.1-1.pgdg20.04+1), server 12.5 (Debian 12.5-1.pgdg100+1))
+Type "help" for help.
+
+northwind=# select * from us_states;
+ state_id |      state_name      | state_abbr | state_region
+----------+----------------------+------------+--------------
+        1 | Alabama              | AL         | south
+        2 | Alaska               | AK         | north
+        ...
+```
 
 #### 3. stop docker-compose
 
